@@ -1,4 +1,4 @@
-package dev.subotinov.util;
+package dev.subotinov.config;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
