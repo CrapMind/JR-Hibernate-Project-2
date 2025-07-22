@@ -1,8 +1,10 @@
 package dev.subotinov.entity.base;
 import jakarta.persistence.*;
+import lombok.Data;
 
 import java.time.OffsetDateTime;
 @MappedSuperclass
+@Data
 public class BaseEntity {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;

@@ -10,7 +10,7 @@ import java.util.Set;
 public class City extends BaseEntity {
     @Column (length = 50)
     private String city;
-    @ManyToOne(optional = false)
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "country_id", nullable = false)
     private Country country;
     @OneToMany (mappedBy = "city", orphanRemoval = true, cascade = CascadeType.ALL)

@@ -1,5 +1,6 @@
-package dev.subotinov.entity;
+package dev.subotinov.entity.store;
 
+import dev.subotinov.entity.Customer;
 import dev.subotinov.entity.base.BaseEntity;
 import jakarta.persistence.*;
 

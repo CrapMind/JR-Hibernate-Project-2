@@ -1,7 +1,6 @@
 package dev.subotinov.entity.film;
 
 import dev.subotinov.entity.Actor;
-import dev.subotinov.entity.Category;
 import dev.subotinov.entity.Language;
 import dev.subotinov.entity.base.BaseEntity;
 import dev.subotinov.util.converter.RatingColumnConverter;

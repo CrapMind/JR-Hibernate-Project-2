@@ -1,4 +1,4 @@
-package dev.subotinov.entity;
+package dev.subotinov.entity.store;
 
 import dev.subotinov.entity.base.BaseEntity;
 import dev.subotinov.entity.location.Address;
