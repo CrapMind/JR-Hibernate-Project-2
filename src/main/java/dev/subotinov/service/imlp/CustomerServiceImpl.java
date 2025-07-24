@@ -2,16 +2,21 @@ package dev.subotinov.service.imlp;
 
 import dev.subotinov.config.JpaUtil;
 import dev.subotinov.entity.Customer;
+import dev.subotinov.entity.store.Inventory;
 import dev.subotinov.entity.store.Rental;
 import dev.subotinov.service.CustomerService;
+import dev.subotinov.service.PaymentService;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.TypedQuery;
 import lombok.NonNull;
 
 import java.time.LocalDate;
+import java.util.List;
 
 public class CustomerServiceImpl implements CustomerService {
+
+    private final PaymentService paymentService = new PaymentServiceImpl();
 
     @Override
     public void save(@NonNull Customer customer) {
@@ -43,7 +48,7 @@ public class CustomerServiceImpl implements CustomerService {
                 );
                 query.setParameter("customer", customer);
                 Rental rental = query.getResultStream().findFirst()
-                        .orElseThrow(() -> new IllegalArgumentException("Нет незакрытой аренды у покупателя"));
+                        .orElseThrow(() -> new IllegalArgumentException("No rental found"));
 
                 rental.setReturnDate(LocalDate.now());
                 em.merge(rental);
@@ -54,5 +59,32 @@ public class CustomerServiceImpl implements CustomerService {
                 System.out.println(e.getMessage());
             }
         }
+    }
+    @Override
+    public void rentRandomFilm(@NonNull Customer customer) {
+        try (EntityManager em = JpaUtil.getEntityManager()) {
+            em.getTransaction().begin();
+
+            Inventory availableInventory = customer
+                    .getStore()
+                    .getInventories()
+                    .stream()
+                    .filter(inv -> {
+                        List<Rental> rentals = inv.getRentalList();
+                        return rentals.isEmpty() || rentals.stream()
+                                .allMatch(r -> r.getReturnDate() != null);
+                    })
+                    .findFirst()
+                    .orElseThrow(() -> new IllegalStateException("No free inventory found"));
+
+            paymentService.createPayment(availableInventory, customer);
+            em.flush();
+            em.getTransaction().commit();
+        }
+
+    }
+    @Override
+    public Customer getCustomerById(int id) {
+        return JpaUtil.getEntityManager().find(Customer.class, id);
     }
 }

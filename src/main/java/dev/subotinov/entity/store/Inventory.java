@@ -3,9 +3,14 @@ package dev.subotinov.entity.store;
 import dev.subotinov.entity.base.BaseEntity;
 import dev.subotinov.entity.film.Film;
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
+
+import java.util.List;
 
 @Entity
 @Table (schema = "movie")
+@Getter @Setter
 public class Inventory extends BaseEntity {
     @ManyToOne
     @JoinColumn(name = "film_id")
@@ -13,4 +18,6 @@ public class Inventory extends BaseEntity {
     @ManyToOne
     @JoinColumn(name = "store_id")
     private Store store;
+    @OneToMany (mappedBy = "inventory")
+    private List<Rental> rentalList;
 }
