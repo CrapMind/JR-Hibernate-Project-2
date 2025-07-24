@@ -13,6 +13,10 @@ import java.time.LocalDateTime;
 @Table (schema = "movie")
 @Getter @Setter
 public class Payment extends BaseEntity {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column (name = "payment_id")
+    private Short id;
     @OneToOne
     @JoinColumn (name = "customer_id")
     private Customer customer;

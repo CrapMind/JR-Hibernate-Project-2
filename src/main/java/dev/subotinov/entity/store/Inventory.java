@@ -12,6 +12,10 @@ import java.util.List;
 @Table (schema = "movie")
 @Getter @Setter
 public class Inventory extends BaseEntity {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column (name = "inventory_id")
+    private Short id;
     @ManyToOne
     @JoinColumn(name = "film_id")
     private Film film;

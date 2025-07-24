@@ -11,7 +11,7 @@ import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.TypedQuery;
 import lombok.NonNull;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 public class CustomerServiceImpl implements CustomerService {
@@ -50,7 +50,7 @@ public class CustomerServiceImpl implements CustomerService {
                 Rental rental = query.getResultStream().findFirst()
                         .orElseThrow(() -> new IllegalArgumentException("No rental found"));
 
-                rental.setReturnDate(LocalDate.now());
+                rental.setReturnDate(LocalDateTime.now());
                 em.merge(rental);
 
                 em.getTransaction().commit();
@@ -77,7 +77,7 @@ public class CustomerServiceImpl implements CustomerService {
                     .findFirst()
                     .orElseThrow(() -> new IllegalStateException("No free inventory found"));
 
-            paymentService.createPayment(availableInventory, customer);
+            paymentService.createPayment(availableInventory, customer, em);
             em.flush();
             em.getTransaction().commit();
         }

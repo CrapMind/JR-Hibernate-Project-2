@@ -8,6 +8,10 @@ import java.util.Set;
 @Entity
 @Table (schema = "movie")
 public class Country extends BaseEntity {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column (name = "country_id")
+    private Short id;
     @Column (length = 50)
     private String country;
     @OneToMany (mappedBy = "country", cascade = CascadeType.ALL, orphanRemoval = true)

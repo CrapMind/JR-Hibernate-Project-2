@@ -14,8 +14,7 @@ import java.math.BigDecimal;
 public class PaymentServiceImpl implements PaymentService {
 
     @Override
-    public void createPayment(Inventory inventory, Customer customer) {
-        EntityManager em = JpaUtil.getEntityManager();
+    public void createPayment(Inventory inventory, Customer customer, EntityManager em) {
         Staff manager = customer.getStore().getManager();
         Rental rental = new Rental(inventory, customer, manager);
         BigDecimal filmRental = inventory.getFilm().getFilmRental().getRate();

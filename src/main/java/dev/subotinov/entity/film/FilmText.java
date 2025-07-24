@@ -7,12 +7,12 @@ import jakarta.persistence.*;
 @Table (schema = "movie", name = "film_text")
 public class FilmText {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    @OneToOne
+    @JoinColumn(name = "film_id")
+    @MapsId
+    private Film film;
     @Column (length = 128)
     private String title;
     @Column
     private String description;
-    @OneToOne (mappedBy = "filmText")
-    private Film film;
 }

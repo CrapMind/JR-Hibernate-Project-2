@@ -6,6 +6,10 @@ import jakarta.persistence.*;
 @Entity
 @Table (schema = "movie")
 public class Address extends BaseEntity {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column (name = "address_id")
+    private Short id;
     @Column (length = 50)
     private String address;
     @Column (length = 50)
