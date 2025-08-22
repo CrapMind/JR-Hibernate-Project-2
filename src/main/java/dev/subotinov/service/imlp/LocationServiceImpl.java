@@ -10,13 +10,13 @@ public class LocationServiceImpl implements LocationService {
     private final LocationRepository locationRepository = new LocationRepository();
 
     @Override
-    public void saveAddress(City city) {
-        locationRepository.saveAddress(city);
+    public void saveAddress(String address, String district, City city, String phone) {
+        locationRepository.saveAddress(address, district, city, phone);
     }
 
     @Override
-    public void saveCity(Country country) {
-        locationRepository.saveCity(country);
+    public void saveCity(Country country, String cityName) {
+        locationRepository.saveCity(country, cityName);
     }
 
     @Override

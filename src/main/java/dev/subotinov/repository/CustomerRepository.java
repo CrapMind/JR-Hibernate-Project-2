@@ -19,7 +19,7 @@ public class CustomerRepository {
 
     StoreService storeService = new StoreServiceImpl();
 
-    public void saveCustomer(Address address, Store store) {
+    public void saveCustomer(String firstName, String lastName, Address address, Store store) {
         try (EntityManager em = JpaUtil.getEntityManager()) {
             EntityTransaction transaction = em.getTransaction();
             try {
@@ -27,8 +27,13 @@ public class CustomerRepository {
 
                 Customer customer = new Customer();
 
-                customer.setAddress(address);
-                customer.setStore(store);
+                Address savedAddress = em.find(Address.class, address.getId());
+                Store savedStore = em.find(Store.class, store.getId());
+
+                customer.setFirstName(firstName);
+                customer.setLastName(lastName);
+                customer.setAddress(savedAddress);
+                customer.setStore(savedStore);
 
                 em.persist(customer);
                 transaction.commit();

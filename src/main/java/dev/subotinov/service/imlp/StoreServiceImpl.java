@@ -25,4 +25,8 @@ public class StoreServiceImpl implements StoreService {
     public void createPayment(Customer customer, Inventory inventory, Store store) {
         storeRepository.createPayment(customer, inventory, store);
     }
+    @Override
+    public Inventory getInventoryById(int id) {
+        return storeRepository.getInventoryById(id);
+    }
 }

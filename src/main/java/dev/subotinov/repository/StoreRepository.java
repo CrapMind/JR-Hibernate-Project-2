@@ -27,6 +27,12 @@ public class StoreRepository {
         }
     }
 
+    public Inventory getInventoryById(int id) {
+        try (EntityManager entityManager = JpaUtil.getEntityManager()) {
+            return entityManager.find(Inventory.class, id);
+        }
+    }
+
     public Store getStoreById(int id) {
         try (EntityManager entityManager = JpaUtil.getEntityManager()) {
             return entityManager.find(Store.class, id);
