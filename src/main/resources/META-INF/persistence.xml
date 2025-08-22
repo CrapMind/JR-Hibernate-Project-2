@@ -18,8 +18,8 @@
         <class>dev.subotinov.entity.store.Rental</class>
         <class>dev.subotinov.entity.store.Staff</class>
         <class>dev.subotinov.entity.store.Store</class>
-        <class>dev.subotinov.entity.Actor</class>
-        <class>dev.subotinov.entity.Language</class>
+        <class>dev.subotinov.entity.film.Actor</class>
+        <class>dev.subotinov.entity.film.Language</class>
 
         <properties>
             <!-- Autodetect @Entity-classes -->

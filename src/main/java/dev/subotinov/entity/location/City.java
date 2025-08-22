@@ -2,13 +2,15 @@ package dev.subotinov.entity.location;
 
 import dev.subotinov.entity.base.BaseEntity;
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 import lombok.ToString;
 
 import java.util.Set;
 
 @Entity
 @Table(schema = "movie")
-@ToString
+@Getter @Setter
 public class City extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

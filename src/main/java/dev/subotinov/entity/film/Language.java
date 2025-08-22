@@ -1,4 +1,4 @@
-package dev.subotinov.entity;
+package dev.subotinov.entity.film;
 
 import dev.subotinov.entity.base.BaseEntity;
 import jakarta.persistence.*;
@@ -10,6 +10,6 @@ public class Language extends BaseEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column (name = "language_id")
     private Byte id;
-    @Column (length = 20)
+    @Column (length = 20, columnDefinition = "char")
     private String name;
 }

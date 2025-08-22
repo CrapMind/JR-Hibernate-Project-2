@@ -5,6 +5,7 @@ import dev.subotinov.entity.base.BaseEntity;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.CreationTimestamp;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -17,10 +18,10 @@ public class Payment extends BaseEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column (name = "payment_id")
     private Short id;
-    @OneToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn (name = "customer_id")
     private Customer customer;
-    @OneToOne
+    @ManyToOne
     @JoinColumn (name = "staff_id")
     private Staff staff;
     @OneToOne (cascade = CascadeType.ALL)
@@ -29,6 +30,7 @@ public class Payment extends BaseEntity {
     @Column (precision = 5, scale = 2)
     private BigDecimal amount;
     @Column (name = "payment_date", nullable = false, updatable = false)
+    @CreationTimestamp
     private LocalDateTime paymentDate;
 
     public Payment (Customer customer, Staff staff, Rental rental, BigDecimal amount) {
@@ -36,7 +38,6 @@ public class Payment extends BaseEntity {
         this.staff = staff;
         this.rental = rental;
         this.amount = amount;
-        this.paymentDate = LocalDateTime.now();
     }
 
     public Payment() {
