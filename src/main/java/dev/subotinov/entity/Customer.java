@@ -1,17 +1,33 @@
 package dev.subotinov.entity;
 
 import dev.subotinov.entity.base.BaseEntity;
+import dev.subotinov.entity.location.Address;
+import jakarta.persistence.*;
 
-import java.sql.Date;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
+@Entity
+@Table (schema = "movie")
 public class Customer extends BaseEntity {
+    @ManyToOne
+    @JoinColumn (name = "store_id")
     private Store store;
+    @Column (name = "first_name", length = 45)
     private String firstName;
+    @Column (name = "last_name", length = 45)
     private String lastName;
+    @Column (length = 50)
     private String email;
+    @OneToOne (optional = false)
+    @JoinColumn (name = "address_id", nullable = false)
     private Address address;
-    private short active;
-    private LocalDate createDate;
-    private Payment payment;
+    @Column (nullable = false)
+    private boolean active = true;
+    @Column (name = "create_date", nullable = false, updatable = false)
+    private LocalDateTime createDate;
+
+    @PrePersist
+    protected void onCreate() {
+        this.createDate = LocalDateTime.now();
+    }
 }

@@ -1,6 +1,6 @@
-package dev.subotinov.entity.util.converter;
+package dev.subotinov.util.converter;
 
-import dev.subotinov.entity.util.enums.Rating;
+import dev.subotinov.util.enums.Rating;
 import jakarta.persistence.AttributeConverter;
 import jakarta.persistence.Converter;
 

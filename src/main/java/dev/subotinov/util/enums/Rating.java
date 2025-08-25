@@ -1,4 +1,4 @@
-package dev.subotinov.entity.util.enums;
+package dev.subotinov.util.enums;
 
 public enum Rating {
     G, PG, PG_13, R, NC_17;

@@ -1,4 +1,4 @@
-package dev.subotinov.entity.util.converter;
+package dev.subotinov.util.converter;
 
 import jakarta.persistence.AttributeConverter;
 import jakarta.persistence.Converter;
