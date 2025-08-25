@@ -24,12 +24,12 @@ public class Rental extends BaseEntity {
     @ManyToOne (fetch = FetchType.LAZY)
     @JoinColumn (name = "inventory_id")
     private Inventory inventory;
-    @OneToOne (fetch = FetchType.LAZY)
+    @ManyToOne (fetch = FetchType.LAZY)
     @JoinColumn (name = "customer_id")
     private Customer customer;
     @Column (name = "return_date")
     private LocalDateTime returnDate;
-    @OneToOne (fetch = FetchType.LAZY)
+    @ManyToOne (fetch = FetchType.LAZY)
     @JoinColumn (name = "staff_id")
     private Staff staff;
 

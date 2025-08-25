@@ -1,7 +1,5 @@
 package dev.subotinov.entity.film;
 
-import dev.subotinov.entity.Actor;
-import dev.subotinov.entity.Language;
 import dev.subotinov.entity.base.BaseEntity;
 import dev.subotinov.util.converter.RatingColumnConverter;
 import dev.subotinov.util.converter.SpecialFeaturesColumnConverter;
@@ -14,7 +12,7 @@ import java.sql.Date;
 import java.util.Set;
 
 @Entity
-@Table (schema = "movie")
+@Table (schema = "movie", name = "film")
 @Getter @Setter
 public class Film extends BaseEntity {
     @Id
@@ -24,33 +22,36 @@ public class Film extends BaseEntity {
     @OneToOne (cascade = CascadeType.ALL)
     @PrimaryKeyJoinColumn
     private FilmText filmText;
-    @Column (name = "release_year")
+    @Column (name = "release_year", columnDefinition = "year")
     private Date releaseYear;
-    @OneToOne
+    @ManyToOne (cascade = CascadeType.ALL)
     @JoinColumn(name = "language_id")
     private Language language;
+    @ManyToOne (cascade = CascadeType.ALL)
+    @JoinColumn(name = "original_language_id")
+    private Language originalLanguage;
     @Embedded
     private FilmRental filmRental;
     @Column
     private Short length;
+    @Column(name = "rating")
     @Convert(converter = RatingColumnConverter.class)
-    @Column
     private Rating rating;
-    @Convert(converter = SpecialFeaturesColumnConverter.class)
     @Column (name = "special_features")
+    @Convert(converter = SpecialFeaturesColumnConverter.class)
     private Set<SpecialFeatures> specialFeatures;
     @ManyToMany
     @JoinTable(
             name = "film_actor",
-            joinColumns = @JoinColumn(name = "film_id"),
-            inverseJoinColumns = @JoinColumn(name = "actor_id")
+            joinColumns = @JoinColumn(name = "film_id", referencedColumnName = "film_id"),
+            inverseJoinColumns = @JoinColumn(name = "actor_id", referencedColumnName = "actor_id")
     )
     private Set<Actor> actors;
     @ManyToMany
     @JoinTable(
             name = "film_category",
-            joinColumns = @JoinColumn(name = "film_id"),
-            inverseJoinColumns = @JoinColumn(name = "category_id")
+            joinColumns = @JoinColumn(name = "film_id", referencedColumnName = "film_id"),
+            inverseJoinColumns = @JoinColumn(name = "category_id", referencedColumnName = "category_id")
     )
     private Set<Category> categories;
 }

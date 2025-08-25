@@ -2,9 +2,12 @@ package dev.subotinov.entity.location;
 
 import dev.subotinov.entity.base.BaseEntity;
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity
 @Table (schema = "movie")
+@Getter @Setter
 public class Address extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

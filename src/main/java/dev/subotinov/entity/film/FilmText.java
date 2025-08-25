@@ -1,6 +1,4 @@
 package dev.subotinov.entity.film;
-
-import dev.subotinov.entity.base.BaseEntity;
 import jakarta.persistence.*;
 
 @Entity
@@ -13,6 +11,6 @@ public class FilmText {
     private Film film;
     @Column (length = 128)
     private String title;
-    @Column
+    @Column(columnDefinition = "text")
     private String description;
 }

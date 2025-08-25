@@ -7,6 +7,7 @@ import jakarta.persistence.*;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDateTime;
 
@@ -19,8 +20,8 @@ public class Customer extends BaseEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column (name = "customer_id")
     private Short id;
-    @ManyToOne
-    @JoinColumn (name = "store_id")
+    @ManyToOne (fetch = FetchType.LAZY)
+    @JoinColumn (name = "store_id", nullable = false)
     private Store store;
     @Column (name = "first_name", length = 45)
     private String firstName;
@@ -28,12 +29,13 @@ public class Customer extends BaseEntity {
     private String lastName;
     @Column (length = 50)
     private String email;
-    @ManyToOne (cascade = CascadeType.ALL)
+    @OneToOne (cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn (name = "address_id", nullable = false)
     private Address address;
     @Column (nullable = false)
     private boolean active = true;
     @Column (name = "create_date", nullable = false, updatable = false)
+    @CreationTimestamp
     private LocalDateTime createDate;
 
     public Customer(Store store, String firstName, String lastName, String email, Address address) {
@@ -47,11 +49,9 @@ public class Customer extends BaseEntity {
 
     public Customer() {}
 
-    public String toString() {
-        return "Customer: " + firstName + " " + lastName + "; email: " + email;
-    }
+/*
     @PrePersist
     protected void onCreate() {
         this.createDate = LocalDateTime.now();
-    }
+    }*/
 }

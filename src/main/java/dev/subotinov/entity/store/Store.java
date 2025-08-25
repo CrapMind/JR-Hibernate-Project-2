@@ -16,7 +16,7 @@ public class Store extends BaseEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column (name = "store_id")
     private Byte id;
-    @OneToOne (fetch = FetchType.LAZY, optional = false)
+    @OneToOne (fetch = FetchType.LAZY, optional = false, cascade = CascadeType.ALL)
     @JoinColumn (name = "manager_staff_id")
     private Staff manager;
     @OneToOne (fetch = FetchType.LAZY, optional = false)
@@ -24,4 +24,10 @@ public class Store extends BaseEntity {
     private Address address;
     @OneToMany(mappedBy = "store")
     private List<Inventory> inventories;
+
+    public Store() {}
+    public Store(Staff manager, Address address) {
+        this.manager = manager;
+        this.address = address;
+    }
 }

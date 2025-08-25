@@ -1,16 +1,17 @@
 package dev.subotinov.entity.base;
 import jakarta.persistence.*;
-import lombok.Data;
+import org.hibernate.annotations.UpdateTimestamp;
+import java.time.LocalDateTime;
 
-import java.time.OffsetDateTime;
 @MappedSuperclass
 public class BaseEntity {
 
     @Column (name = "last_update")
-    private OffsetDateTime lastUpdate = OffsetDateTime.now();
-
+    @UpdateTimestamp
+    private LocalDateTime lastUpdate;
+/*
     @PreUpdate
     protected void onUpdate() {
-        this.lastUpdate = OffsetDateTime.now();
-    }
+        this.lastUpdate = LocalDateTime.now();
+    }*/
 }

@@ -22,6 +22,6 @@ public class Inventory extends BaseEntity {
     @ManyToOne
     @JoinColumn(name = "store_id")
     private Store store;
-    @OneToMany (mappedBy = "inventory")
-    private List<Rental> rentalList;
+    @OneToMany (mappedBy = "inventory", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Rental> rentals;
 }

@@ -3,9 +3,12 @@ package dev.subotinov.entity.store;
 import dev.subotinov.entity.base.BaseEntity;
 import dev.subotinov.entity.location.Address;
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity
 @Table (schema = "movie")
+@Getter @Setter
 public class Staff extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,17 +22,28 @@ public class Staff extends BaseEntity {
     @JoinColumn (name = "address_id")
     private Address address;
     @Lob
-    @Column (columnDefinition = "blob")
+    @Column (columnDefinition = "BLOB")
     private byte[] picture;
     @Column (length = 50)
     private String email;
-    @OneToOne(mappedBy = "manager")
-    @JoinColumn (name = "store_id")
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn (name = "store_id", nullable = false)
     private Store store;
-    @Column
-    private boolean active = true;
-    @Column (length = 16)
+    @Column (name = "active", columnDefinition = "BIT")
+    private Boolean isActive;
+    @Column (length = 16, nullable = false)
     private String username;
-    @Column (length = 40)
+    @Column (length = 40, nullable = false)
     private String password;
+
+    public Staff() {}
+    public Staff(String firstName, String lastName, Address address, String email, String username, String password) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.address = address;
+        this.email = email;
+        this.username = username;
+        this.password = password;
+    }
+
 }

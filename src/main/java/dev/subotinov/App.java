@@ -10,10 +10,6 @@ import dev.subotinov.service.imlp.CustomerServiceImpl;
  */
 public class App
 {
-
     public static void main( String[] args ) {
-        CustomerService customerService = new CustomerServiceImpl();
-        Customer customer = customerService.getCustomerById(4);
-        customerService.returnRentalFilm(customer);
     }
 }
