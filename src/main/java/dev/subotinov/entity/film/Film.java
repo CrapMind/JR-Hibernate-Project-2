@@ -9,12 +9,15 @@ import dev.subotinov.util.converter.YearColumnConverter;
 import dev.subotinov.util.enums.Rating;
 import dev.subotinov.util.enums.SpecialFeatures;
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.time.Year;
 import java.util.Set;
 
 @Entity
 @Table (schema = "movie")
+@Getter @Setter
 public class Film extends BaseEntity {
     @OneToOne (cascade = CascadeType.ALL)
     @PrimaryKeyJoinColumn

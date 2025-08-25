@@ -6,13 +6,15 @@ import dev.subotinov.entity.store.Store;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.time.LocalDateTime;
 
 @EqualsAndHashCode(callSuper = true)
 @Entity
 @Table (schema = "movie")
-@Data
+@Getter @Setter
 public class Customer extends BaseEntity {
     @ManyToOne
     @JoinColumn (name = "store_id")
@@ -30,6 +32,19 @@ public class Customer extends BaseEntity {
     private boolean active = true;
     @Column (name = "create_date", nullable = false, updatable = false)
     private LocalDateTime createDate;
+
+    public Customer(Store store, String firstName, String lastName, String email, Address address) {
+        this.store = store;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.address = address;
+        this.createDate = LocalDateTime.now();
+    }
+
+    public Customer() {
+
+    }
 
     @PrePersist
     protected void onCreate() {

@@ -19,7 +19,7 @@ public class Staff extends BaseEntity {
     private byte[] picture;
     @Column (length = 50)
     private String email;
-    @OneToOne(mappedBy = "manager", fetch = FetchType.LAZY)
+    @OneToOne(mappedBy = "manager")
     @JoinColumn (name = "store_id")
     private Store store;
     @Column
