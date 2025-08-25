@@ -6,19 +6,32 @@
              version="3.1">
 
     <persistence-unit name="myPersistenceUnit" transaction-type="RESOURCE_LOCAL">
+        <class>dev.subotinov.entity.Customer</class>
+        <class>dev.subotinov.entity.film.Category</class>
+        <class>dev.subotinov.entity.film.Film</class>
+        <class>dev.subotinov.entity.film.FilmText</class>
+        <class>dev.subotinov.entity.location.Address</class>
+        <class>dev.subotinov.entity.location.City</class>
+        <class>dev.subotinov.entity.location.Country</class>
+        <class>dev.subotinov.entity.store.Inventory</class>
+        <class>dev.subotinov.entity.store.Payment</class>
+        <class>dev.subotinov.entity.store.Rental</class>
+        <class>dev.subotinov.entity.store.Staff</class>
+        <class>dev.subotinov.entity.store.Store</class>
+        <class>dev.subotinov.entity.Actor</class>
+        <class>dev.subotinov.entity.Language</class>
 
         <properties>
-
             <!-- Autodetect @Entity-classes -->
-        <property name="hibernate.archive.autodetection" value="class"/>
+        <property name="hibernate.archive.autodetect" value="class"/>
             <!-- JDBC via P6Spy -->
         <property name="jakarta.persistence.jdbc.driver" value="com.p6spy.engine.spy.P6SpyDriver"/>
         <property name="jakarta.persistence.jdbc.url" value="jdbc:p6spy:mysql://localhost:3306/movie"/>
             <!-- Get login/password from environment -->
-        <property name="jakarta.persistence.jdbc.user" value="${DB_USER}"/>
-        <property name="jakarta.persistence.jdbc.password" value="${DB_PASS}"/>
+        <property name="jakarta.persistence.jdbc.user" value="root"/>
+        <property name="jakarta.persistence.jdbc.password" value="root"/>
             <!-- Hibernate settings -->
-        <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL8Dialect"/>
+        <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"/>
         <property name="hibernate.hbm2ddl.auto" value="validate"/>
         <property name="hibernate.show_sql" value="true"/>
         <property name="hibernate.format_sql" value="true"/>

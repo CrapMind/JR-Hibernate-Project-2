@@ -12,7 +12,7 @@ import java.math.BigDecimal;
 public class FilmRental {
 
     @Column (name = "rental_duration")
-    private short duration;
+    private Byte duration;
     @Column (name = "rental_rate")
     private BigDecimal rate;
     @Column (name = "replacement_cost")

@@ -3,7 +3,6 @@ package dev.subotinov.entity.store;
 import dev.subotinov.entity.Customer;
 import dev.subotinov.entity.base.BaseEntity;
 import jakarta.persistence.*;
-import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -16,6 +15,10 @@ import java.time.LocalDateTime;
 @Table (schema = "movie")
 @Getter @Setter
 public class Rental extends BaseEntity {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column (name = "rental_id")
+    private Short id;
     @Column (name = "rental_date", nullable = false)
     private LocalDateTime rentalDate;
     @ManyToOne (fetch = FetchType.LAZY)
@@ -25,7 +28,7 @@ public class Rental extends BaseEntity {
     @JoinColumn (name = "customer_id")
     private Customer customer;
     @Column (name = "return_date")
-    private LocalDate returnDate;
+    private LocalDateTime returnDate;
     @OneToOne (fetch = FetchType.LAZY)
     @JoinColumn (name = "staff_id")
     private Staff staff;

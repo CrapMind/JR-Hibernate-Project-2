@@ -7,6 +7,10 @@ import jakarta.persistence.*;
 @Entity
 @Table (schema = "movie")
 public class Staff extends BaseEntity {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column (name = "staff_id")
+    private Byte id;
     @Column (name = "first_name", length = 45)
     private String firstName;
     @Column (name = "last_name", length = 45)
@@ -15,7 +19,7 @@ public class Staff extends BaseEntity {
     @JoinColumn (name = "address_id")
     private Address address;
     @Lob
-    @Column
+    @Column (columnDefinition = "blob")
     private byte[] picture;
     @Column (length = 50)
     private String email;

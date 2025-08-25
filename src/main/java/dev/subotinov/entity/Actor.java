@@ -9,7 +9,10 @@ import java.util.Set;
 @Entity
 @Table (schema = "movie")
 public class Actor extends BaseEntity {
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column (name = "actor_id")
+    private Short id;
     @ManyToMany (mappedBy = "actors")
     private Set<Film> films;
     @Column (name = "first_name", length = 45)

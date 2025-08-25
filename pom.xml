@@ -50,6 +50,7 @@
       <groupId>org.projectlombok</groupId>
       <artifactId>lombok</artifactId>
       <version>1.18.38</version>
+      <scope>provided</scope>
     </dependency>
 
     <dependency>
@@ -58,17 +59,42 @@
       <version>3.0.0-beta3</version>
     </dependency>
   </dependencies>
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <configuration>
-                    <source>14</source>
-                    <target>14</target>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.10.1</version> <!-- добавил версию -->
+        <configuration>
+          <source>14</source>
+          <target>14</target>
+          <annotationProcessorPaths>
+            <path>
+              <groupId>org.projectlombok</groupId>
+              <artifactId>lombok</artifactId>
+              <version>1.18.38</version>
+            </path>
+          </annotationProcessorPaths>
+        </configuration>
+      </plugin>
+
+      <plugin>
+        <artifactId>maven-jar-plugin</artifactId>
+        <version>3.2.2</version>
+        <configuration>
+          <archive>
+            <manifest>
+              <addClasspath>true</addClasspath>
+              <classpathPrefix>lib/</classpathPrefix>
+              <mainClass>dev.subotinov.App</mainClass>
+            </manifest>
+          </archive>
+        </configuration>
+      </plugin>
+
+    </plugins>
+  </build>
+
 
 </project>

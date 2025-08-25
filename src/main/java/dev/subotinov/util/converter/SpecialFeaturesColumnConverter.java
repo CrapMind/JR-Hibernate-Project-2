@@ -25,6 +25,7 @@ public class SpecialFeaturesColumnConverter implements AttributeConverter<Set<Sp
         if (dbData == null || dbData.isEmpty()) return EnumSet.noneOf(SpecialFeatures.class);
         return Arrays.stream(dbData.split(","))
                 .map(String::trim)
+                .map(name -> name.toUpperCase().replace(" ", "_"))
                 .map(name -> Enum.valueOf(SpecialFeatures.class, name))
                 .collect(Collectors.toCollection(() -> EnumSet.noneOf(SpecialFeatures.class)));
     }

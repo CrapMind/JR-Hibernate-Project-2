@@ -2,12 +2,18 @@ package dev.subotinov.entity.location;
 
 import dev.subotinov.entity.base.BaseEntity;
 import jakarta.persistence.*;
+import lombok.ToString;
 
 import java.util.Set;
 
 @Entity
 @Table(schema = "movie")
+@ToString
 public class City extends BaseEntity {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column (name = "city_id")
+    private Short id;
     @Column (length = 50)
     private String city;
     @ManyToOne(cascade = CascadeType.ALL)
