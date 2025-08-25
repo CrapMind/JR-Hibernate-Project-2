@@ -11,8 +11,8 @@ public class CustomerServiceImpl implements CustomerService {
     private final CustomerRepository repository = new CustomerRepository();
 
     @Override
-    public void saveCustomer(Address address, Store store) {
-        repository.saveCustomer(address, store);
+    public void saveCustomer(String firstName, String lastName, Address address, Store store) {
+        repository.saveCustomer(firstName, lastName, address, store);
     }
     @Override
     public void customerReturnRentalFilm(Customer customer, Inventory inventory) {

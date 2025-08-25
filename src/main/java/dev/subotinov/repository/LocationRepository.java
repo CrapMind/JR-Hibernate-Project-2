@@ -8,20 +8,27 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.TypedQuery;
 
 public class LocationRepository {
-    public void saveAddress(City city) {
+    public void saveAddress(String address, String district, City city, String phone) {
         try (EntityManager em = JpaUtil.getEntityManager()) {
             em.getTransaction().begin();
-            Address address = new Address();
-            address.setCity(city);
-            em.persist(address);
+
+            City settedCity = em.find(City.class, city.getId());
+            Address newAddress = new Address();
+            newAddress.setAddress(address);
+            newAddress.setDistrict(district);
+            newAddress.setCity(settedCity);
+            newAddress.setPhone(phone);
+            em.persist(newAddress);
             em.getTransaction().commit();
         }
     }
-    public void saveCity(Country country) {
+    public void saveCity(Country country, String cityName) {
         try (EntityManager em = JpaUtil.getEntityManager()) {
             em.getTransaction().begin();
             City city = new City();
-            city.setCountry(country);
+            Country settedCountry = em.find(Country.class, country.getId());
+            city.setCity(cityName);
+            city.setCountry(settedCountry);
             em.persist(city);
             em.getTransaction().commit();
         }

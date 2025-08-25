@@ -11,5 +11,6 @@ public interface StoreService {
     Store getStoreById(int id);
     Inventory getAvailableInventory(Store store);
     void createPayment(Customer customer, Inventory inventory, Store store);
+    Inventory getInventoryById(int id);
 
 }
