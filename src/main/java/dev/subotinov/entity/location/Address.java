@@ -12,7 +12,7 @@ public class Address extends BaseEntity {
     private String address2;
     @Column (length = 20)
     private String district;
-    @ManyToOne(optional = false)
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn (name = "city_id", nullable = false)
     private City city;
     @Column (name = "postal_code", length = 10)

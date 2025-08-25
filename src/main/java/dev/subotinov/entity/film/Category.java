@@ -1,7 +1,6 @@
-package dev.subotinov.entity;
+package dev.subotinov.entity.film;
 
 import dev.subotinov.entity.base.BaseEntity;
-import dev.subotinov.entity.film.Film;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.ManyToMany;
